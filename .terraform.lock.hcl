@@ -3,7 +3,7 @@
 
 provider "registry.terraform.io/huaweicloud/huaweicloud" {
   version     = "1.66.3"
-  constraints = ">= 1.19.0"
+  constraints = ">= 1.66.3"
   hashes = [
     "h1:h/Kao61bF/sIIwiKBuP6ElubODOMjzNRd4GxKJ48dCs=",
     "zh:0b7f2b9b64b420e333170193e88d63c9714fbf091b736b442537bd95e4c8b62b",
