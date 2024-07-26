@@ -11,10 +11,11 @@ output "subnet1_id" {
 }
 */
 
-output "rds_instance_id" {
+/*output "rds_instance_id" {
   description = "The ID of the RDS instance"
   value       = module.rds.rds_instance_id
 }
+*/
 
 output "s3_bucket_id" {
   description = "The ID of the S3 bucket"
@@ -36,3 +37,14 @@ output "allow_https_rule_id" {
   description = "The ID of the allow https rule"
   value       = module.security_group.allow_https_rule_id
 }
+
+/*
+output "cluster_id" {
+  value = module.cce_cluster.cluster_id
+}
+
+output "cluster_status" {
+  description = "The status of the CCE cluster"
+  value       = module.cce_cluster.cluster_status
+}
+*/

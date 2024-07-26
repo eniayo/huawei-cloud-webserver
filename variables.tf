@@ -44,3 +44,29 @@ variable "vpc_id" {
   type        = string
   default     = "6ca43c5d-4cf7-448c-a4e3-e387ae1ae739"
 }
+
+variable "cluster_name" {
+  description = "The name of the CCE cluster"
+  type        = string
+  default     = "my-cce-cluster"
+}
+
+variable "flavor_id" {
+  description = "The flavor ID for the CCE cluster"
+  type        = string
+  default     = "cce.s1.small"
+}
+
+variable "container_network_type" {
+  description = "The container network type"
+  type        = string
+  default     = "vpc-router"
+}
+
+variable "cluster_version" {
+  description = "The version of the CCE cluster"
+  type        = string
+  default     = "v1.15.11-r0"
+}
+
+
