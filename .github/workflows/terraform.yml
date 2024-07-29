@@ -21,6 +21,12 @@ jobs:
         with:
           terraform_version: 1.9.3
 
+      - name: Set up Git LFS
+        uses: git-lfs/git-lfs@v3
+
+      - name: Navigate to project directory
+        run: cd projects/dev
+
       - name: Initialize Terraform
         run: terraform init
         env:
@@ -30,6 +36,10 @@ jobs:
 
       - name: Terraform Format
         run: terraform fmt -check
+        env:
+          HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
+          HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
+          HUAWEICLOUD_REGION: ${{ secrets.HUAWEICLOUD_REGION }}
 
       - name: Terraform Plan
         run: terraform plan
