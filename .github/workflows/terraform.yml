@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.66.3
+          terraform_version: 1.9.3
 
       - name: Initialize Terraform
         run: terraform init
@@ -36,4 +36,12 @@ jobs:
         env:
           HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
           HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
-         
+          HUAWEICLOUD_REGION: ${{ secrets.HUAWEICLOUD_REGION }}
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/test1'
+        run: terraform apply -auto-approve
+        env:
+          HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
+          HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
+          HUAWEICLOUD_REGION: ${{ secrets.HUAWEICLOUD_REGION }}
