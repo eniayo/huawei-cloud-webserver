@@ -14,14 +14,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Terraform
-        run: |
-          wget https://releases.hashicorp.com/terraform/1.66.3/terraform_1.66.3_linux_amd64.zip
-          unzip terraform_1.66.3_linux_amd64.zip
-          sudo mv terraform /usr/local/bin/
-          terraform --version
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.9.3
 
       - name: Initialize Terraform
         run: terraform init
@@ -47,4 +45,3 @@ jobs:
           HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
           HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
           HUAWEICLOUD_REGION: ${{ secrets.HUAWEICLOUD_REGION }}
-
