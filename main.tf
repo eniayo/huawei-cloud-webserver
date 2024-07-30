@@ -15,7 +15,7 @@ module "example_vpc" {
 
 # Create the Security Group.
 module "security_group" {
-  source = "../modules/huaweicloud_securitygroup"
+  source      = "../modules/huaweicloud_securitygroup"
   name        = var.security_group_name
   description = var.security_group_description
   vpc_id      = module.example_vpc.vpc_id
@@ -42,9 +42,9 @@ module "security_group" {
 
 # Create the OBS bucket.
 module "s3" {
-  source = "../modules/s3"
+  source      = "../modules/s3"
   bucket_name = var.bucket_name
-  acl = var.acl     
+  acl         = var.acl
 }
 
 /*
