@@ -1,5 +1,4 @@
 name: Terraform
-
 on:
   push:
     branches:
@@ -7,47 +6,46 @@ on:
   pull_request:
     branches:
       - test1
-
 jobs:
   terraform:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.9.3
-
-      - name: Navigate to project directory
-        run: cd projects/dev
+      
+      # Remove this step as it's not necessary and doesn't persist
+      # - name: Navigate to project directory
+      #   run: cd projects/dev
         
       - name: Initialize Terraform
         run: terraform init
-        working-directory: projects/dev
+        # Change working-directory to root
+        working-directory: ./
         env:
           HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
           HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
           HUAWEICLOUD_REGION: ${{ secrets.HUAWEICLOUD_REGION }}
-
       - name: Terraform Format
         run: terraform fmt -check
-        working-directory: projects/dev
-
+        # Change working-directory to root
+        working-directory: ./
       - name: Terraform Plan
         run: terraform plan
-        working-directory: projects/dev
+        # Change working-directory to root
+        working-directory: ./
         env:
           HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
           HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
           HUAWEICLOUD_REGION: ${{ secrets.HUAWEICLOUD_REGION }}
-
       - name: Terraform Apply
         if: github.ref == 'refs/heads/test1'
         run: terraform apply -auto-approve
-        working-directory: projects/dev
+        # Change working-directory to root
+        working-directory: ./
         env:
           HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
           HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
