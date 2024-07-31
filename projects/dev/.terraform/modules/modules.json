@@ -1,1 +1,0 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"example_vpc","Source":"../modules/huaweicloud_vpc","Dir":"../modules/huaweicloud_vpc"},{"Key":"s3","Source":"../modules/s3","Dir":"../modules/s3"},{"Key":"security_group","Source":"../modules/huaweicloud_securitygroup","Dir":"../modules/huaweicloud_securitygroup"}]}

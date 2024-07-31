@@ -1,0 +1,26 @@
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Ignore Terraform plan files
+*.tfplan
+
+# Ignore Terraform directories
+.terraform/
+
+# Ignore sensitive files
+*.tfvars
+*.tfvars.json
+
+# Ignore editor-specific files (optional)
+.DS_Store
+.idea/
+.vscode/
+
+# Ignore log files and temp files
+*.log
+*.tmp
+*.bak
+
+# Ignore any other files or directories you don't want to track
+
