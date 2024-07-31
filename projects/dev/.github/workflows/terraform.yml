@@ -14,19 +14,17 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.9.3
-
-      - name: Navigate to Terraform directory
-        run: cd ./projects/dev
+        run: |
+          wget https://releases.hashicorp.com/terraform/1.66.3/terraform_1.66.3_linux_amd64.zip
+          unzip terraform_1.66.3_linux_amd64.zip
+          sudo mv terraform /usr/local/bin/
+          terraform --version
 
       - name: Initialize Terraform
         run: terraform init
-        working-directory: ./projects/dev
         env:
           HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
           HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
@@ -34,11 +32,9 @@ jobs:
 
       - name: Terraform Format
         run: terraform fmt -check
-        working-directory: ./projects/dev
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ./projects/dev
         env:
           HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
           HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
@@ -47,7 +43,6 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/test1'
         run: terraform apply -auto-approve
-        working-directory: ./projects/dev
         env:
           HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
           HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
