@@ -30,7 +30,7 @@ output "security_group_id" {
 output "allow_ping_rule_id" {
   description = "The ID of the allow ping rule"
   value       = module.security_group.allow_ping_rule_id
-  
+
 }
 
 output "allow_https_rule_id" {

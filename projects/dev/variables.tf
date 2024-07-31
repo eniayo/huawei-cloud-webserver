@@ -19,7 +19,7 @@ variable "region" {
 variable "bucket_name" {
   description = "Name of the OBS bucket"
   type        = string
-  default  = "ennys-unique-assets"
+  default     = "ennys-unique-assets"
 }
 
 variable "acl" {

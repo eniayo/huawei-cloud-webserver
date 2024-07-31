@@ -22,23 +22,23 @@ jobs:
           terraform_version: 1.9.3
 
       - name: Navigate to Terraform directory
-        run: cd ./projects/dev
+        run: cd projects/dev
 
       - name: Initialize Terraform
         run: terraform init
-        working-directory: ./projects/dev
         env:
           HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
           HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
           HUAWEICLOUD_REGION: ${{ secrets.HUAWEICLOUD_REGION }}
 
       - name: Terraform Format
-        run: terraform fmt -check
-        working-directory: ./projects/dev
+        run: terraform fmt -recursive
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ./projects/dev
         env:
           HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
           HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
@@ -47,7 +47,6 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/test1'
         run: terraform apply -auto-approve
-        working-directory: ./projects/dev
         env:
           HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
           HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
