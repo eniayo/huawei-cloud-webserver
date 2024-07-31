@@ -1,7 +1,7 @@
 variable "access_key" {
   description = "Access key for Huawei Cloud"
   type        = string
-  default     = "V68O9BPVPCBEKIZMLVIV"
+  default     = "IKGTNBWMIUJMJFU3ZB0B"
 }
 
 variable "secret_key" {
