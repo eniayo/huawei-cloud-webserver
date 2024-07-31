@@ -22,7 +22,7 @@ jobs:
           terraform_version: 1.9.3
 
       - name: Initialize Terraform
-        run: terraform init
+        run: terraform init -force
         working-directory: projects/dev
         env:
           HUAWEICLOUD_ACCESS_KEY: ${{ secrets.HUAWEICLOUD_ACCESS_KEY }}
