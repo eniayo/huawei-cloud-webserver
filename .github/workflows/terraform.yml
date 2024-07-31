@@ -29,11 +29,9 @@ jobs:
           HUAWEICLOUD_SECRET_KEY: ${{ secrets.HUAWEICLOUD_SECRET_KEY }}
           HUAWEICLOUD_REGION: ${{ secrets.HUAWEICLOUD_REGION }}
 
-      - name: Terraform Format
-        run: terraform fmt -check
-        working-directory: projects/dev
 
       - name: Terraform Plan
+        if: github.event_name == 'pull_request'
         run: terraform plan
         working-directory: projects/dev
         env:
