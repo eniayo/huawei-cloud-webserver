@@ -1,17 +1,18 @@
 # Configure the HUAWEI CLOUD provider.
-/*provider "huaweicloud" {
+provider "huaweicloud" {
   region     = "ap-southeast-1"
   access_key = "my-access-key"
   secret_key = "my-secret-key"
 }
-*/
+
 
 # Create a VPC.
-module "example_vpc" {
+  module "example_vpc" {
   source = "../modules/huaweicloud_vpc"
   name   = "terraform_vpc"
   cidr   = "192.168.0.0/16"
 }
+
 
 # Create the Security Group.
 module "security_group" {
